@@ -1,0 +1,1 @@
+-e git://github.com/mailgun/shipper.git@4b656a5f6be9f4896ae3988bc7cf8bd33d2bd80e#egg=shipper
