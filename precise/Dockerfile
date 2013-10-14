@@ -18,7 +18,7 @@ ADD src/sources.list /etc/apt/sources.list
 
 RUN echo 'force-unsafe-io' | tee /etc/dpkg/dpkg.cfg.d/02apt-speedup
 RUN echo 'DPkg::Post-Invoke {"/bin/rm -f /var/cache/apt/archives/*.deb || true";};' | tee /etc/apt/apt.conf.d/no-cache
-RUN echo 'Acquire::http {No-Cache=True;};' | tee /etc/apt/apt.conf.d/no-cache
+RUN echo 'Acquire::http {No-Cache=True;};' | tee /etc/apt/apt.conf.d/no-http-cache
 
 RUN apt-get update -y && apt-get dist-upgrade -y
 
