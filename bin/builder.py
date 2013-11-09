@@ -82,6 +82,6 @@ def push(repo):
     s.log.debug("About to upload: {}".format(repo))
     cmd = "docker -H={} push {}".format(DOCKER_URL, repo)
     s.log.debug("About to execute: {}".format(cmd))
-    subprocess.check_output(cmd, shell=True)
+    subprocess.check_output(cmd, stderr=subprocess.STDOUT, shell=True)
 
 run()
