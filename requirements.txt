@@ -1,1 +1,1 @@
--e git://github.com/mailgun/shipper.git@4b656a5f6be9f4896ae3988bc7cf8bd33d2bd80e#egg=shipper
+-e git://github.com/mailgun/shipper.git@c78a4d1507531c1bc3dbc30c4dedd0da2e2d62a9#egg=shipper
