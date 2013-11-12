@@ -15,6 +15,7 @@ clean_docker: clean
 precise: clean_docker
 	./bin/builder.py precise ${TODAY}
 	./bin/builder.py flatten precise-with-updates:${TODAY}
+	sleep 10
 	./bin/builder.py retag precise-with-updates:${TODAY} racker/precise-with-updates:${TODAY}
 	./bin/builder.py retag precise-with-updates:${TODAY} racker/precise-with-updates:latest
 
