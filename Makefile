@@ -9,8 +9,8 @@ clean:
 	rm -rf dist build *.egg-info
 
 clean_docker: clean
-	./bin/builder.py cleanup_containers
-	./bin/builder.py cleanup_images
+	-./bin/builder.py cleanup_containers
+	-./bin/builder.py cleanup_images
 
 precise: clean_docker
 	./bin/builder.py precise ${TODAY}
