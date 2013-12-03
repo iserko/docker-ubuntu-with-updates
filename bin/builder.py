@@ -20,16 +20,26 @@ def splitimage(name):
 
 @command
 def cleanup_containers():
-    cmd = "docker -H={} rm `docker -H {} ps -a -q`".format(DOCKER_URL, DOCKER_URL)
-    s.log.debug("About to execute: {}".format(cmd))
-    subprocess.check_output(cmd, shell=True)
+    try:
+      subprocess.check_call("docker -H {} ps -a -q | grep ''").format(DOCKER_URL)
+    except CalledProcessError, e:
+      s.log.debug("No docker containers found, skipping cleanup")
+    else:
+      cmd = "docker -H={} rm `docker -H {} ps -a -q`".format(DOCKER_URL, DOCKER_URL)
+      s.log.debug("About to execute: {}".format(cmd))
+      subprocess.check_output(cmd, shell=True)
 
 
 @command
 def cleanup_images():
-    cmd = "docker -H={} rmi `docker -H {} images -q`".format(DOCKER_URL, DOCKER_URL)
-    s.log.debug("About to execute: {}".format(cmd))
-    subprocess.check_output(cmd, shell=True)
+    try:
+      subprocess.check_call("docker -H {} images -q | grep ''").format(DOCKER_URL)
+    except CalledProcessError, e:
+      s.log.debug("No docker images found, skipping cleanup")
+    else:
+      cmd = "docker -H={} rmi `docker -H {} images -q`".format(DOCKER_URL, DOCKER_URL)
+      s.log.debug("About to execute: {}".format(cmd))
+      subprocess.check_output(cmd, shell=True)
 
 
 @command
