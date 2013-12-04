@@ -14,7 +14,7 @@ Running it:
     make env
     source .ve/bin/activate
 
-    # just build a precise image in your local machie
+    # just build a precise image in your local machine
     make precise
 
     # build a precise image for today and push to docker registry.
