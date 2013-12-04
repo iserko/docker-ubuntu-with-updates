@@ -69,7 +69,7 @@ def flatten(image):
 
     s.stop(container)
 
-    cmd = "cat /tmp/{}.tar | docker -H=tcp://127.0.0.1:4243 import - {} {}".format(container.id, repo, tag)
+    cmd = "cat /tmp/{}.tar | docker -H={} import - {}:{}".format(container.id, DOCKER_URL, repo, tag)
     s.log.debug("About to execute: {}".format(cmd))
     subprocess.check_output(cmd, shell=True)
 
@@ -81,7 +81,7 @@ def flatten(image):
 @command
 def retag(image, newname):
     repo, tag = splitimage(newname)
-    cmd = "docker -H={} tag -f {} {} {}".format(DOCKER_URL, image, repo, tag)
+    cmd = "docker -H={} tag -f {} {}:{}".format(DOCKER_URL, image, repo, tag)
     s.log.debug("About to execute: {}".format(cmd))
     subprocess.check_output(cmd, shell=True)
 
